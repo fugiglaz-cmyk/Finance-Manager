@@ -2,16 +2,14 @@ import random
 
 transactions = []
 
-
-
-
-def show_transactions():
-    """Функція для перегляду всіх транзакцій
+def delete_transaction():
+    """Функція для видалення транзакції
     args: None
-    return: всі транзакції
+    return: None
     """
+    delete = int(input("Enter id of transaction to delete: "))
     global transactions
     for trans in transactions:
-        print(trans)
-
-
+        if trans["id"] == delete:
+            transactions.remove(trans)
+            break
