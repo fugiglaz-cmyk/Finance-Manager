@@ -38,3 +38,13 @@ def calculate_balance(transactions: list) -> float | int:
     bal = sum_of_in - sum_of_ex
     return bal
 
+
+def filter_by_category(transactions: list, category: str) -> list:
+    """Функція для фільтрації та подальшого виводу транзакцій за категоріями
+    args: transactions: список транзакцій
+    category: категорія транзакцій
+    return: фільтровані транзакції
+    """
+    for trans in transactions:
+        if trans["category"] == category:
+            print(trans)
