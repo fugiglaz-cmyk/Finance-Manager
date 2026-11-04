@@ -45,3 +45,14 @@ def add_transaction(transaction_type: str, amount: int | float, balance: int | f
                     "category": category, "description": description}
         else:
             return f"id: {ID} Your balance is under zero: {final_balance} operation can`t be done"
+
+
+def show_transactions():
+    """Функція для перегляду всіх транзакцій
+    args: None
+    return: всі транзакції
+    """
+    global transactions
+    for trans in transactions:
+        print(trans)
+
