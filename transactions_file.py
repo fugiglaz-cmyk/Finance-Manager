@@ -21,6 +21,7 @@ def add_transaction(transaction_type: str, amount: int | float, balance: int | f
             transaction_data = {
                 "id": ID,
                 "type": transaction_type,
+                "amount": amount,
                 "balance": final_balance,
                 "category": category,
                 "description": description,
@@ -34,13 +35,14 @@ def add_transaction(transaction_type: str, amount: int | float, balance: int | f
             transaction_data = {
                 "id": ID,
                 "type": transaction_type,
+                "amount": amount,
                 "balance": final_balance,
                 "category": category,
                 "description": description,
             }
             transactions.append(transaction_data)
-            return {"id": ID, "type": transaction_type, "balance": final_balance, "category": category,
-                    "description": description}, print("Operation done")
+            return {"id": ID, "type": transaction_type, "amount": amount, "balance": final_balance,
+                    "category": category, "description": description}
         else:
             return f"id: {ID} Your balance is under zero: {final_balance} operation can`t be done"
 

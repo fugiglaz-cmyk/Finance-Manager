@@ -1,8 +1,6 @@
 import transactions_file
 import statistics
 
-transactions = []
-num = 1
 actions = """========== FINANCE MANAGER ==========
 
 1. Додати дохід
@@ -14,55 +12,35 @@ actions = """========== FINANCE MANAGER ==========
 7. Фільтрація за категорією
 0. Вихід
 """
+
 balance = int(input("Enter your balance: "))
-print(actions)
-while num != 0:
+
+while True:
+    print(actions)
     num = int(input("Enter the action: "))
     match num:
-        case 1:
-            transaction_type = "income"
-            amount = int(input("Enter amount you to  income: "))
+        case 1 | 2:
+            transaction_type = "income" if num == 1 else "expense"
+            amount = int(input("Enter amount: "))
             category = input("Enter category of the transaction: ")
             description = input("Enter description to the transaction: ")
-            transactions_file.add_transaction(transaction_type, amount, balance, category, description)
-            print("Operation done what do you want next?")
-            print(actions)
-            num = int(input("Enter the action: "))
-        case 2:
-            transaction_type = "income"
-            amount = int(input("Enter amount you to  income: "))
-            category = input("Enter category of the transaction: ")
-            description = input("Enter description to the transaction: ")
-            transactions_file.add_transaction(transaction_type, amount, balance, category, description)
-            print("What do you want next?")
-            print(actions)
-            num = int(input("Enter the action: "))
+            result = transactions_file.add_transaction(
+                transaction_type, amount, balance, category, description)
+            if result:
+                balance = result["balance"]
+                print("Operation done")
         case 3:
             transactions_file.show_transactions()
-            print("What do you want next?")
-            print(actions)
-            num = int(input("Enter the action: "))
         case 4:
-            statistics.calculate_income(transactions)
-            print("What do you want next?")
-            print(actions)
-            num = int(input("Enter the action: "))
+            print(statistics.calculate_income(transactions_file.transactions))
         case 5:
-            statistics.calculate_expenses(transactions)
-            print("What do you want next?")
-            print(actions)
-            num = int(input("Enter the action: "))
+            print(statistics.calculate_expenses(transactions_file.transactions))
         case 6:
             print(balance)
-            print("What do you want next?")
-            print(actions)
-            num = int(input("Enter the action: "))
         case 7:
             category = input("Enter a category you want to search: ")
-            statistics.filter_by_category(transactions, category)
-            print("What do you want next?")
-            print(actions)
-            num = int(input("Enter the action: "))
-        case 8:
-            num = 0
+            statistics.filter_by_category(transactions_file.transactions, category)
+        case 0:
             break
+        case _:
+            print("Невідома дія")

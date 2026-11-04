@@ -7,7 +7,7 @@ def calculate_income(transactions: list) -> float | int:
     for trans in transactions:
         if trans["type"] == "income":
             sum_of_trans += trans["amount"]
-    print(sum_of_trans)
+    return sum_of_trans
 
 
 def calculate_expenses(transactions: list) -> float | int:
@@ -17,9 +17,9 @@ def calculate_expenses(transactions: list) -> float | int:
     """
     sum_of_trans = 0
     for trans in transactions:
-        if trans["type"] == "expence":
+        if trans["type"] == "expense":
             sum_of_trans += trans["amount"]
-    print(sum_of_trans)
+    return sum_of_trans
 
 
 def calculate_balance(transactions: list) -> float | int:
@@ -33,10 +33,10 @@ def calculate_balance(transactions: list) -> float | int:
             sum_of_in += trans["amount"]
     sum_of_ex = 0
     for trans in transactions:
-        if trans["type"] == "expence":
+        if trans["type"] == "expense":
             sum_of_ex += trans["amount"]
     bal = sum_of_in - sum_of_ex
-    print(bal)
+    return bal
 
 
 def filter_by_category(transactions: list, category: str) -> list:
