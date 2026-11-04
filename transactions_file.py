@@ -45,28 +45,3 @@ def add_transaction(transaction_type: str, amount: int | float, balance: int | f
                     "category": category, "description": description}
         else:
             return f"id: {ID} Your balance is under zero: {final_balance} operation can`t be done"
-
-
-def show_transactions():
-    """Функція для перегляду всіх транзакцій
-    args: None
-    return: всі транзакції
-    """
-    global transactions
-    for trans in transactions:
-       print(trans)
-
-
-def delete_transaction():
-    """Функція для видалення транзакції
-    args: None
-    return: None
-    """
-    delete = int(input("Enter id of transaction to delete: "))
-    global transactions
-    for trans in transactions:
-        if trans["id"] == delete:
-            transactions.remove(trans)
-            break
-
-
