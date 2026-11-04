@@ -22,3 +22,19 @@ def calculate_expenses(transactions: list) -> float | int:
     return sum_of_trans
 
 
+def calculate_balance(transactions: list) -> float | int:
+    """Функція для знаходження різниці між доходами та витратами
+    args: транзакції
+    return: різниця між доходами та витратами
+    """
+    sum_of_in = 0
+    for trans in transactions:
+        if trans["type"] == "income":
+            sum_of_in += trans["amount"]
+    sum_of_ex = 0
+    for trans in transactions:
+        if trans["type"] == "expense":
+            sum_of_ex += trans["amount"]
+    bal = sum_of_in - sum_of_ex
+    return bal
+
